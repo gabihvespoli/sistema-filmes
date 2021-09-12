@@ -14,24 +14,15 @@
             name="titulo"
             formControlName="titulo"
           />
-          <mat-error
-            *ngIf="
-              (cadastro.touched || cadastro.dirty) && validacao.hasError(f.titulo, 'required')
-            "
+          <mat-error *ngIf="validacao.hasErrorValidar(f.titulo, 'required')"
             >Campo obrigatório</mat-error
           >
-          <mat-error
-            *ngIf="
-              (cadastro.touched || cadastro.dirty) && f.titulo.errors?.minlength
-            "
-            >O título precisa ter no min 2 caracteres</mat-error
-          >
-          <mat-error
-            *ngIf="
-              (cadastro.touched || cadastro.dirty) && f.titulo.errors?.maxlength
-            "
-            >O título pode ter no máximo 256 caracteres</mat-error
-          >
+          <mat-error *ngIf="validacao.hasErrorValidar(f.titulo, 'minlength')"
+            >O título precisa ter no min 2 caracteres
+          </mat-error>
+          <mat-error *ngIf="validacao.hasErrorValidar(f.titulo, 'maxlength')"
+            >O título pode ter no máximo 256 caracteres
+          </mat-error>
         </mat-form-field>
         <mat-form-field class="full-width">
           <input
@@ -40,11 +31,7 @@
             name="urlFoto"
             formControlName="urlFoto"
           />
-          <mat-error
-            *ngIf="
-              (cadastro.touched || cadastro.dirty) &&
-              f.urlFoto.errors?.minlength
-            "
+          <mat-error *ngIf="validacao.hasErrorValidar(f.urlFoto, 'minlength')"
             >O link precisa ter no min 10 caracteres</mat-error
           >
         </mat-form-field>
@@ -64,10 +51,7 @@
           ></mat-datepicker-toggle>
           <mat-datepicker #picker></mat-datepicker>
           <mat-error
-            *ngIf="
-              (cadastro.touched || cadastro.dirty) &&
-              f.dtLancamento.errors?.required
-            "
+            *ngIf="validacao.hasErrorValidar(f.dtLancamento, 'required')"
             >Campo obrigatório</mat-error
           >
         </mat-form-field>
@@ -90,20 +74,15 @@
             name="nota"
             formControlName="nota"
           />
-          <mat-error
-            *ngIf="
-              (cadastro.touched || cadastro.dirty) && f.nota.errors?.required
-            "
+          <mat-error *ngIf="validacao.hasErrorValidar(f.nota, 'required')"
             >Campo obrigatório</mat-error
           >
-          <mat-error
-            *ngIf="(cadastro.touched || cadastro.dirty) && f.nota.errors?.min"
-            >A nota precisa ser no mínimo 0</mat-error
-          >
-          <mat-error
-            *ngIf="(cadastro.touched || cadastro.dirty) && f.nota.errors?.max"
-            >A nota pode ser no máximo 10</mat-error
-          >
+          <mat-error *ngIf="validacao.hasErrorValidar(f.nota, 'min')"
+            >A nota precisa ser no mínimo 0
+          </mat-error>
+          <mat-error *ngIf="validacao.hasErrorValidar(f.nota, 'max')"
+            >A nota pode ser no máximo 10
+          </mat-error>
         </mat-form-field>
         <mat-form-field class="full-width">
           <input
@@ -112,11 +91,7 @@
             name="urlIMBd"
             formControlName="urlIMBd"
           />
-          <mat-error
-            *ngIf="
-              (cadastro.touched || cadastro.dirty) &&
-              f.urlIMBd.errors?.minlength
-            "
+          <mat-error *ngIf="validacao.hasErrorValidar(f.urlIMBd, 'minlength')"
             >O link precisa ter no min 10 caracteres</mat-error
           >
         </mat-form-field>
@@ -128,16 +103,13 @@
           >
             <mat-option value="Ação">Açao</mat-option>
             <mat-option value="Aventura">Aventura</mat-option>
-            <mat-option value=">Ficção Científica"
+            <mat-option value="Ficção Científica"
               >Ficção Científica</mat-option
             >
             <mat-option value="Romance">Romance</mat-option>
             <mat-option value="Terror">Terror</mat-option>
           </mat-select>
-          <mat-error
-            *ngIf="
-              (cadastro.touched || cadastro.dirty) && f.genero.errors?.required
-            "
+          <mat-error *ngIf="validacao.hasErrorValidar(f.genero, 'required')"
             >Campo obrigatório</mat-error
           >
         </mat-form-field>
