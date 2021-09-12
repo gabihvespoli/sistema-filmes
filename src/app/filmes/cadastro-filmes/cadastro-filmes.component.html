@@ -16,7 +16,7 @@
           />
           <mat-error
             *ngIf="
-              (cadastro.touched || cadastro.dirty) && f.titulo.errors?.required
+              (cadastro.touched || cadastro.dirty) && validacao.hasError(f.titulo, 'required')
             "
             >Campo obrigatório</mat-error
           >
