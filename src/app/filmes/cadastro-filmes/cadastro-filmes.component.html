@@ -13,24 +13,7 @@
         <dio-input-textarea titulo="Descrição" controlName="descricao" [formGroup]="cadastro"></dio-input-textarea>
         <dio-input-number titulo="Nota IMDb *" controlName="nota" [formGroup]="cadastro" step="0.1"></dio-input-number>
         <dio-input-text titulo="Link IMDb" controlName="urlIMBd" [formGroup]="cadastro" ></dio-input-text>
-        <mat-form-field class="full-width">
-          <mat-select
-            placeholder="Gênero *"
-            name="genero"
-            formControlName="genero"
-          >
-            <mat-option value="Ação">Açao</mat-option>
-            <mat-option value="Aventura">Aventura</mat-option>
-            <mat-option value="Ficção Científica"
-              >Ficção Científica</mat-option
-            >
-            <mat-option value="Romance">Romance</mat-option>
-            <mat-option value="Terror">Terror</mat-option>
-          </mat-select>
-          <mat-error *ngIf="validacao.hasErrorValidar(f.genero, 'required')"
-            >Campo obrigatório</mat-error
-          >
-        </mat-form-field>
+        <dio-input-select titulo="Gênero *" controlName="genero" [formGroup]="cadastro"></dio-input-select>
       </mat-card-content>
       <mat-card-actions>
         <button type="submit" color="accent" mat-raised-button>Salvar</button>

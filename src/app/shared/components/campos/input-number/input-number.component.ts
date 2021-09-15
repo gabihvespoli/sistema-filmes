@@ -7,7 +7,7 @@ import { ValidarCamposService } from '../validar-campos.service';
   templateUrl: './input-number.component.html',
   styleUrls: ['./input-number.component.scss']
 })
-export class InputNumberComponent{
+export class InputNumberComponent {
 
   @Input() titulo: string;
   @Input() formGroup: FormGroup;
