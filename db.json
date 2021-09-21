@@ -339,6 +339,26 @@
       "urlIMBd": "",
       "genero": "Aventura",
       "id": 34
+    },
+    {
+      "titulo": "fsdfsdfsd",
+      "urlFoto": "",
+      "dtLancamento": "2021-09-06T03:00:00.000Z",
+      "descricao": "",
+      "nota": 0,
+      "urlIMBd": "",
+      "genero": "Ficção Científica",
+      "id": 35
+    },
+    {
+      "titulo": "fsdfsdfsd",
+      "urlFoto": "",
+      "dtLancamento": "2021-09-20T03:00:00.000Z",
+      "descricao": "",
+      "nota": 0,
+      "urlIMBd": "",
+      "genero": "Romance",
+      "id": 36
     }
   ]
 }
