@@ -1,5 +1,6 @@
 import { Component, Inject, OnInit } from "@angular/core";
 import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
+import { Alerta } from "../../models/alerta";
 
 @Component({
   selector: "dio-alerta",
@@ -8,27 +9,31 @@ import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
 })
 export class AlertaComponent implements OnInit {
 
-  titulo = 'Sucesso';
-  descricao = 'Seu registro foi salvo com sucesso!';
-  btnSucesso = 'Ok';
-  btnCancelar = 'Cancelar';
+  alerta = {
+    titulo:'Sucesso',
+    descricao:'Seu registro foi salvo com sucesso!',
+    btnSucesso:'Ok',
+    btnCancelar:'Cancelar',
 
-  corBtn = 'primary';
-  possuiBtnFechar = false;
+    corBtnSucesso:'accent',
+    corBtnCancelar: 'warn',
+    possuiBtnFechar:false
+  } as Alerta;
 
   constructor(
     public dialogRef: MatDialogRef<AlertaComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any
+    @Inject(MAT_DIALOG_DATA) public data: Alerta
   ) {}
 
   ngOnInit() {
     if(this.data){
-      this.titulo = this.data.titulo || this.titulo;
-      this.descricao = this.data.descricao || this.descricao;
-      this.btnSucesso = this.data.btnSucesso || this.btnSucesso;
-      this.btnCancelar = this.data.btnCancelar || this.btnCancelar;
-      this.corBtn = this.data.corBtn || this.corBtn;
-      this.possuiBtnFechar = this.data.possuiBtnFechar || this.possuiBtnFechar;
+      this.alerta.titulo = this.data.titulo || this.alerta.titulo;
+      this.alerta.descricao = this.data.descricao || this.alerta.descricao;
+      this.alerta.btnSucesso = this.data.btnSucesso || this.alerta.btnSucesso;
+      this.alerta.btnCancelar = this.data.btnCancelar || this.alerta.btnCancelar;
+      this.alerta.corBtnSucesso = this.data.corBtnSucesso || this.alerta.corBtnSucesso;
+      this.alerta.corBtnCancelar = this.data.corBtnCancelar || this.alerta.corBtnCancelar;
+      this.alerta.possuiBtnFechar = this.data.possuiBtnFechar || this.alerta.possuiBtnFechar;
     }
   }
 }

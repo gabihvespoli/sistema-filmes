@@ -1,10 +1,11 @@
-import { AlertaComponent } from './../../shared/components/alerta/alerta.component';
-import { FilmesService } from './../../core/filmes.service';
-import { Filme } from './../../shared/models/filme';
+import { Alerta } from './../../shared/models/alerta';
+import { AlertaComponent } from "./../../shared/components/alerta/alerta.component";
+import { FilmesService } from "./../../core/filmes.service";
+import { Filme } from "./../../shared/models/filme";
 import { ValidarCamposService } from "./../../shared/components/campos/validar-campos.service";
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog } from "@angular/material/dialog";
 
 @Component({
   selector: "dio-cadastro-filmes",
@@ -19,7 +20,7 @@ export class CadastroFilmesComponent implements OnInit {
     public validacao: ValidarCamposService,
     public dialog: MatDialog,
     private fb: FormBuilder,
-    private filmeService: FilmesService,
+    private filmeService: FilmesService
   ) {}
 
   get f() {
@@ -44,7 +45,15 @@ export class CadastroFilmesComponent implements OnInit {
       genero: ["", [Validators.required]],
     });
 
-    this.generos = ['Ação', 'Aventura', 'Ficção Científica', 'Romance', 'Terror', 'Drama', 'Comédia'];
+    this.generos = [
+      "Ação",
+      "Aventura",
+      "Ficção Científica",
+      "Romance",
+      "Terror",
+      "Drama",
+      "Comédia",
+    ];
   }
 
   submit(): void {
@@ -63,11 +72,21 @@ export class CadastroFilmesComponent implements OnInit {
   }
 
   private salvar(filme: Filme): void {
-    this.filmeService.salvar(filme).subscribe(() => {
-      const dialogRef = this.dialog.open(AlertaComponent);
-    },
-    () => {
-      alert('erro ao salvar')
-    })
+    this.filmeService.salvar(filme).subscribe(
+      () => {
+        const config = {
+          data: {
+            btnSucesso: 'Ver lista',
+            btnCancelar: 'Cadastrar novo',
+            corBtnCancelar: 'primary',
+            possuiBtnFechar: true
+          } as Alerta
+        };
+        const dialogRef = this.dialog.open(AlertaComponent, config);
+      },
+      () => {
+        alert("erro ao salvar");
+      }
+    );
   }
 }
