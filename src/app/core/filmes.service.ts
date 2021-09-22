@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Filme } from '../shared/models/filme';
@@ -16,7 +16,10 @@ export class FilmesService {
     return this.http.post<Filme>(url, filme);
   }
 
-  listar(): Observable<Filme[]> {
-    return this.http.get<Filme[]>(url);
+  listar(pagina:number, qtdPags: number): Observable<Filme[]> {
+    let httpParams = new HttpParams();
+    httpParams = httpParams.set('_page', pagina.toString())
+    httpParams = httpParams.set('_limit', qtdPags.toString());
+    return this.http.get<Filme[]>(url, {params: httpParams});
   }
 }
