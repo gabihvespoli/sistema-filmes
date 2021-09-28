@@ -1,9 +1,10 @@
-import { ConfigParams } from './../../shared/models/config-params';
-import { FormBuilder } from '@angular/forms';
-import { FilmesService } from './../../core/filmes.service';
+import { debounceTime } from 'rxjs/operators';
 import { Component, OnInit } from '@angular/core';
-import { Filme } from 'src/app/shared/models/filme';
+import { FormBuilder } from '@angular/forms';
 import { FormGroup } from '@angular/forms';
+import { ConfigParams } from './../../shared/models/config-params';
+import { FilmesService } from './../../core/filmes.service';
+import { Filme } from './../../shared/models/filme';
 
 @Component({
   selector: 'dio-listagem-filmes',
@@ -11,6 +12,8 @@ import { FormGroup } from '@angular/forms';
   styleUrls: ['./listagem-filmes.component.scss']
 })
 export class ListagemFilmesComponent implements OnInit {
+
+  readonly semFoto = 'https://www.termoparts.com.br/wp-content/uploads/2017/10/no-image.jpg';
 
   config: ConfigParams = {
     pagina: 0,
@@ -31,11 +34,14 @@ export class ListagemFilmesComponent implements OnInit {
       genero: ['']
     });
 
-    this.filtrosListagem.get('texto').valueChanges.subscribe((val: string) => {
+    this.filtrosListagem.get('texto').valueChanges
+    .pipe(debounceTime(400))
+    .subscribe((val: string) => {
       this.config.pesquisa = val;
       this.resetarConsulta();
     });
-    this.filtrosListagem.get('genero').valueChanges.subscribe((val: string) => {
+    this.filtrosListagem.get('genero').valueChanges
+    .subscribe((val: string) => {
       this.config.campo = {tipo: 'genero', valor: val};
       this.resetarConsulta();
     });
